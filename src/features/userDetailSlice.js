@@ -51,7 +51,7 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id, { rejectWith
     const apiurl = `https://641dd63d945125fff3d75742.mockapi.io/crud/${id}`
     const response = await axios.delete(apiurl);
     console.log("Fetching delete data", response);
-    toast.success("User Deleted Successfully")
+    toast.warning("User Deleted Successfully")
     return response.data
   } catch (error) {
     console.log("Error Fetching delete data", error);
@@ -115,7 +115,7 @@ const userDetailSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Show User
+      // Details User
       .addCase(detailsuser.pending, (state) => {
         state.loading = true;
       })
