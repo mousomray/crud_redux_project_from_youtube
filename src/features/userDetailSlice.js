@@ -61,16 +61,16 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id, { rejectWith
 });
 
 // Call Api for Update User
-export const updateUser = createAsyncThunk("updateUser", async (data, { rejectWithValue }) => {
+export const updateUser = createAsyncThunk("updateUser", async (id, { rejectWithValue }) => {
   try {
-    const apiurl = `https://641dd63d945125fff3d75742.mockapi.io/crud/${data.id}`
-    const response = await axios.put(apiurl, data);
-    console.log("Fetching update data", response);
-    toast.success("User Updated Successfully")
+    const apiurl = `https://641dd63d945125fff3d75742.mockapi.io/crud`;
+    const response = await axios.post(apiurl, id);
+    console.log("Fetching Update data..",response);
+    toast.success("User Updated Successfully");
     return response.data;
   } catch (error) {
     console.log("Error Fetching update data", error);
-    toast.error("User is not updated")
+    toast.error(error?.response?.data);
     return rejectWithValue(error.response.data);
   }
 });
@@ -129,33 +129,12 @@ const userDetailSlice = createSlice({
       })
 
       // Delete User
-      .addCase(deleteUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(deleteUser.fulfilled, (state, action) => {
-        state.loading = false;
-        const id = action.meta.arg; // accessing the id passed in the action payload
-        state.users = state.users.filter((user) => user.id !== id);
-      })
-      .addCase(deleteUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+      // No Any builder Required For Delete
+
 
       // Update User
-      .addCase(updateUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.users = state.users.map((ele) =>
-          ele.id === action.payload.id ? action.payload : ele
-        );
-      })
-      .addCase(updateUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload.message;
-      });
+      // No Builder Required For Update
+      
   },
 });
 

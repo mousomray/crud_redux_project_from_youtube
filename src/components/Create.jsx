@@ -4,10 +4,17 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../features/userDetailSlice";
 
+const initialValue = {
+  name: "",
+  email: "",
+  age: '',
+  gender: '',
+}
+
 const Create = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(initialValue);
   const { loading } = useSelector((state) => state.app);
-  
+
 
   const navigate = useNavigate();
 
@@ -23,6 +30,7 @@ const Create = () => {
 
     console.log("users...", users);
     dispatch(createUser(users));
+    setUsers(initialValue)
     navigate("/read");
 
   };
@@ -37,6 +45,7 @@ const Create = () => {
             type="text"
             name="name"
             class="form-control"
+            value={users?.name}
             onChange={handleOnChange}
             required
           />
@@ -47,6 +56,7 @@ const Create = () => {
             type="email"
             name="email"
             class="form-control"
+            value={users?.email}
             onChange={handleOnChange}
             required
           />
@@ -57,6 +67,7 @@ const Create = () => {
             type="text"
             name="age"
             class="form-control"
+            value={users?.age}
             onChange={handleOnChange}
             required
           />

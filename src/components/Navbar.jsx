@@ -11,7 +11,7 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid ">
-          <h4 className="navbar-brand">CRUD WITH REDUX</h4>
+          <h4 className="navbar-brand">CRD</h4>
 
 
           <div className="collapse navbar-collapse">

@@ -16,10 +16,10 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Create />} />
-          <Route exact path="/read" element={<Read />} />
-          <Route exact path="/details/:id" element={<Details />} />
-          <Route exact path="/edit/:id" element={<Update />} />
+          <Route path="/" element={<Create />} />
+          <Route path="/read" element={<Read />} />
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/edit/:id" element={<Update/>} />
         </Routes>
       </Router>
     </div>
