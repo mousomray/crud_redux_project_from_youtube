@@ -49,7 +49,7 @@ const Update = () => {
     e.preventDefault();
 
     console.log("users...", users);
-    await dispatch(updateUser(users));
+    await dispatch(updateUser({ data: users, id }));
     navigate("/read");
 
   };

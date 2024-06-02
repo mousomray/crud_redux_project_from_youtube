@@ -61,11 +61,11 @@ export const deleteUser = createAsyncThunk("deleteUser", async (id, { rejectWith
 });
 
 // Call Api for Update User
-export const updateUser = createAsyncThunk("updateUser", async (id, { rejectWithValue }) => {
+export const updateUser = createAsyncThunk("updateUser", async ({ data, id }, { rejectWithValue }) => {
   try {
     const apiurl = `https://641dd63d945125fff3d75742.mockapi.io/crud`;
-    const response = await axios.post(apiurl, id);
-    console.log("Fetching Update data..",response);
+    const response = await axios.put(`${apiurl}/${id}`, data);
+    console.log("Fetching Update data..", response);
     toast.success("User Updated Successfully");
     return response.data;
   } catch (error) {
@@ -128,13 +128,13 @@ const userDetailSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Delete User
-      // No Any builder Required For Delete
+    // Delete User
+    // No Any builder Required For Delete
 
 
-      // Update User
-      // No Builder Required For Update
-      
+    // Update User
+    // No Builder Required For Update
+
   },
 });
 
